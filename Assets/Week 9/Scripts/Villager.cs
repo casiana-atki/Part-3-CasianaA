@@ -5,17 +5,18 @@ using UnityEngine.EventSystems;
 
 public class Villager : MonoBehaviour
 {
-    Rigidbody2D rb;
+    protected Rigidbody2D rb;
     Animator animator;
 
     bool clickingOnSelf;
     bool isSelected;
     public GameObject highlight;
+    
 
 
     protected Vector2 destination;
-    Vector2 movement;
-    float speed = 3;
+    protected Vector2 movement;
+    protected float speed = 3;
 
     void Start()
     {
@@ -23,6 +24,12 @@ public class Villager : MonoBehaviour
         animator = GetComponent<Animator>();
         destination = transform.position;
         Selected(false);
+
+    }
+
+    public void LateUpdate()
+    {
+        
     }
     public void Selected(bool value)
     {
@@ -59,6 +66,8 @@ public class Villager : MonoBehaviour
         if (movement.magnitude < 0.1)
         {
             movement = Vector2.zero;
+            //resets the speed, this is for the thief's dash
+            speed = 3; 
         }
 
         rb.MovePosition(rb.position + speed * Time.deltaTime * movement.normalized);
