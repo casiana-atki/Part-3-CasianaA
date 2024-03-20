@@ -13,6 +13,7 @@ public class Thief : Villager
     public Transform knifeSpawn2;
     public float currentTime = 0;
     public float dashTime = 2;
+    Coroutine dashing; 
   //  float timer;
 
    // public float dashSpeed; 
@@ -26,7 +27,11 @@ public class Thief : Villager
     }
     protected override void Attack()
     {
-        StartCoroutine(Dash());
+        if(dashing != null)
+        {
+            StopCoroutine(dashing); 
+        }
+        dashing = StartCoroutine(Dash());
     }
 
     IEnumerator Dash()
