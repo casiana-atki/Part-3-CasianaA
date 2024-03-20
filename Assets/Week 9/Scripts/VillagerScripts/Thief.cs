@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,31 +12,42 @@ public class Thief : Villager
     public Transform knifeSpawn1;
     public Transform knifeSpawn2;
     public float currentTime = 0;
+    public float dashTime = 2;
+  //  float timer;
+
+   // public float dashSpeed; 
+  //  bool isDashing;
+    
 
 
     public override ChestType CanOpen()
     {
         return ChestType.Thief;
     }
-
     protected override void Attack()
     {
-        //Similar to the archer but I did two positions since the thief has 2 knives. I tried to match them up to the animation 
-        base.Attack();
-        Instantiate(knifePrefab, knifeSpawn1.position, knifeSpawn1.rotation);
-        Instantiate(knifePrefab, knifeSpawn2.position, knifeSpawn2.rotation);
+        StartCoroutine(Dash());
+    }
 
-        
-
-        if (Input.GetMouseButtonDown(1))
+    IEnumerator Dash()
+    {
+        destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        speed = 10; 
+        while (speed > 3)
         {
-            //Set the speed really high for the thief's dash. This is just a comment but I think it'd be really cool if there was an animation we could play to make it look smoother :,) oh well still fun!
-            speed = 10;
-            destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
+            yield return null; 
         }
+        base.Attack();
+        yield return new WaitForSeconds(0.1f); 
+        Instantiate(knifePrefab, knifeSpawn1.position, knifeSpawn1.rotation);
+        yield return new WaitForSeconds(0.1f); // forces it to wait 0.1 seconds before spawning this at the end, it also makes a slight pause between both knives spawning 
+        Instantiate(knifePrefab, knifeSpawn2.position, knifeSpawn2.rotation);
+    }
 
-
-
+    //Apart of the fix for the naming shown in Character Control 
+    public override string ToString()
+    {
+        return "The Thief";
     }
 }
+
