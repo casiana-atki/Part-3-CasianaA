@@ -8,6 +8,7 @@ public class SpawnPoint : MonoBehaviour
     public List<GameObject> monsterPrefabs;
     Coroutine coroutine; 
 
+    //This script involves a coroutine, it instantiates the monsterPrefabs attached in a list on the unity components, and instantiates them every 2 seconds with the use of a coroutine. 
     void Start()
     {
         StartCoroutine(PlaceMonsters());
