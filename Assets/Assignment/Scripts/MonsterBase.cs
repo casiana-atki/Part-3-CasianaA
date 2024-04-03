@@ -12,6 +12,7 @@ public class MonsterBase : MonoBehaviour
     protected virtual void Start()
     {
         monsterSize = 0;
+        transform.localScale = Vector3.zero;
     }
 
 
