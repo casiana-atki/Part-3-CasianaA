@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class TankyMonster : MonsterBase
 {
-    // Start is called before the first frame update
-    void Start()
+    protected override void Update()
     {
-        base.Start(); 
-    }
+        growthdiv = 40; 
+        base.Update();
 
-    // Update is called once per frame
-    void Update()
-    {
-        base.Update(); 
     }
 }
