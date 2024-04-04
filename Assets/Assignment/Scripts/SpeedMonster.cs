@@ -12,7 +12,6 @@ public class SpeedMonster : MonsterBase
 
     protected override void Update()
     {
-
         base.Update();
         growthdiv = 10f; 
         float movementAmount = speed * Time.deltaTime;
