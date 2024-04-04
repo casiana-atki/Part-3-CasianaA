@@ -16,8 +16,17 @@ public class TankyMonster : MonsterBase
 
     protected override void Update()
     {
+
         growthdiv = 40; 
         base.Update();
 
+        if (monsterSize >= 0.5f)
+        {
+            PlayerHealth.DealDamageToPlayer(3);
+            Destroy(gameObject);
+        }
+
     }
+
+
 }

@@ -27,4 +27,5 @@ public class SpeedMonster : MonsterBase
         }
         transform.position = newPosition;
     }
+
 }
